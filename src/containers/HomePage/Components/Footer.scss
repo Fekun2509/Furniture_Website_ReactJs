@@ -1,0 +1,123 @@
+/* =============================================
+   Footer Component
+   ============================================= */
+.gg-footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 4rem 5% 2rem;
+}
+
+.gg-footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.gg-footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--cyan);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.gg-footer-logo span {
+    color: rgba(0, 232, 213, 0.35);
+}
+
+.gg-footer-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 240px;
+    font-weight: 300;
+}
+
+.gg-footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+}
+
+.gg-footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.gg-footer-col a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    transition: color 0.2s;
+    font-weight: 300;
+}
+
+.gg-footer-col a:hover {
+    color: var(--cyan);
+}
+
+/* Social */
+.gg-social-row {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+}
+
+.gg-social-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+}
+
+.gg-social-btn:hover {
+    border-color: var(--border2);
+    background: rgba(0, 232, 213, 0.05);
+}
+
+.gg-social-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--muted2);
+    fill: none;
+    stroke-width: 1.5;
+    transition: stroke 0.2s;
+}
+
+.gg-social-btn:hover svg {
+    stroke: var(--cyan);
+}
+
+/* Bottom bar */
+.gg-footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.gg-footer-bottom p {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+}
+
+.gg-footer-bottom p span {
+    color: rgba(0, 232, 213, 0.4);
+}

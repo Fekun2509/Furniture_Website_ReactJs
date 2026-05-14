@@ -1,0 +1,173 @@
+/* =============================================
+   FeaturedProducts Component
+   ============================================= */
+.gg-featured {
+    padding: 5rem 5%;
+}
+
+.gg-section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+}
+
+.gg-view-all {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gg-view-all:hover {
+    color: var(--cyan);
+    border-bottom-color: var(--cyan);
+}
+
+/* --- Product grid --- */
+.gg-products-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+
+.gg-prod-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.gg-prod-card:hover {
+    border-color: rgba(0, 232, 213, 0.2);
+    transform: translateY(-3px);
+}
+
+/* --- Image area --- */
+.gg-prod-img {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gg-img-bg-1 {
+    background: linear-gradient(135deg, #0c1210 0%, #091009 100%);
+}
+
+.gg-img-bg-2 {
+    background: linear-gradient(135deg, #0e0c16 0%, #0a0810 100%);
+}
+
+.gg-img-bg-3 {
+    background: linear-gradient(135deg, #0e1016 0%, #08090d 100%);
+}
+
+.gg-img-bg-4 {
+    background: linear-gradient(135deg, #0c1612 0%, #08100c 100%);
+}
+
+/* shared inline art from categories */
+.gg-prod-img .gg-cat-inline-art {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.gg-prod-card:hover .gg-cat-inline-art {
+    opacity: 0.9;
+}
+
+/* --- Badge --- */
+.gg-prod-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+}
+
+.gg-tag-sale {
+    background: var(--cyan);
+    color: #050f0e;
+}
+
+.gg-tag-new {
+    background: var(--purple);
+    color: #fff;
+}
+
+/* --- Body --- */
+.gg-prod-body {
+    padding: 1rem 1.1rem 1.2rem;
+}
+
+.gg-prod-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.45rem;
+    color: var(--white);
+    line-height: 1.2;
+}
+
+.gg-prod-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gg-prod-price-main {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.gg-add-cart-btn {
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 232, 213, 0.08);
+    border: 1px solid rgba(0, 232, 213, 0.2);
+    color: var(--cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gg-add-cart-btn:hover {
+    background: var(--cyan);
+    color: #050f0e;
+}
+
+.gg-add-cart-btn svg {
+    width: 13px;
+    height: 13px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}

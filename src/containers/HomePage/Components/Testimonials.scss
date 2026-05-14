@@ -1,0 +1,95 @@
+/* =============================================
+   Testimonials Component
+   ============================================= */
+.gg-testimonials {
+    padding: 5rem 5%;
+}
+
+.gg-testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+}
+
+.gg-testi-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem 1.75rem 1.75rem;
+    position: relative;
+    transition: border-color 0.3s;
+}
+
+.gg-testi-card:hover {
+    border-color: rgba(0, 232, 213, 0.15);
+}
+
+.gg-testi-card::before {
+    content: '"';
+    position: absolute;
+    top: 1.2rem;
+    right: 1.75rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(0, 232, 213, 0.08);
+    line-height: 1;
+}
+
+.gg-testi-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 1.25rem;
+    background: rgba(0, 232, 213, 0.08);
+    border: 1px solid rgba(0, 232, 213, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gg-testi-icon.purple-ic {
+    background: rgba(147, 51, 234, 0.08);
+    border-color: rgba(147, 51, 234, 0.2);
+}
+
+.gg-testi-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--cyan);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.gg-testi-icon.purple-ic svg {
+    stroke: #a78bfa;
+}
+
+.gg-testi-quote {
+    font-size: 0.85rem;
+    color: rgba(240, 240, 240, 0.75);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.gg-testi-author {
+    border-top: 1px solid var(--border);
+    padding-top: 0.9rem;
+}
+
+.gg-testi-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+.gg-testi-role {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: 0.2rem;
+}

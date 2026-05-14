@@ -1,0 +1,251 @@
+/* =============================================
+   CaroulImage Component
+   ============================================= */
+.gg-CaroulImage {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 5% 10%;
+    overflow: hidden;
+}
+
+/* --- Carousel background --- */
+.gg-CaroulImage-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.gg-CaroulImage-carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.gg-CaroulImage-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+    background-size: cover;
+    background-position: center;
+}
+
+.gg-CaroulImage-slide.active {
+    opacity: 1;
+}
+
+.gg-CaroulImage-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(9, 9, 9, 0.85) 0%, rgba(9, 9, 9, 0.5) 55%, rgba(9, 9, 9, 0.2) 100%),
+        linear-gradient(0deg, rgba(9, 9, 9, 0.7) 0%, transparent 50%);
+}
+
+/* --- Carousel controls --- */
+.gg-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 232, 213, 0.08);
+    border: 1px solid rgba(0, 232, 213, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.gg-carousel-btn:hover {
+    background: rgba(0, 232, 213, 0.18);
+    border-color: rgba(0, 232, 213, 0.6);
+}
+
+.gg-carousel-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--cyan);
+    fill: none;
+    stroke-width: 2;
+}
+
+.gg-carousel-btn.prev {
+    left: 2rem;
+}
+
+.gg-carousel-btn.next {
+    right: 2rem;
+}
+
+/* --- Dots --- */
+.gg-carousel-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.gg-carousel-dot {
+    width: 24px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: background 0.3s, width 0.3s;
+}
+
+.gg-carousel-dot.active {
+    background: var(--cyan);
+    width: 40px;
+}
+
+/* --- Overlays --- */
+.gg-CaroulImage-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse 60% 40% at 20% 80%, rgba(0, 232, 213, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.gg-CaroulImage-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    z-index: 2;
+    background:
+        linear-gradient(0deg, rgba(0, 232, 213, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 232, 213, 0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(400px) rotateX(40deg);
+    transform-origin: bottom;
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+    pointer-events: none;
+}
+
+.gg-CaroulImage-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(6rem, 18vw, 18rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0, 232, 213, 0.05);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* --- Floating particles --- */
+.gg-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--cyan);
+    opacity: 0.4;
+    animation: floatP 6s infinite ease-in-out;
+}
+
+.gg-particle:nth-child(1) {
+    width: 3px;
+    height: 3px;
+    left: 20%;
+    top: 30%;
+    animation-delay: 0s;
+}
+
+.gg-particle:nth-child(2) {
+    width: 2px;
+    height: 2px;
+    left: 60%;
+    top: 60%;
+    animation-delay: 1s;
+}
+
+.gg-particle:nth-child(3) {
+    width: 4px;
+    height: 4px;
+    left: 40%;
+    top: 80%;
+    animation-delay: 2s;
+}
+
+.gg-particle:nth-child(4) {
+    width: 2px;
+    height: 2px;
+    left: 80%;
+    top: 25%;
+    animation-delay: 0.5s;
+}
+
+/* --- CaroulImage content --- */
+.gg-CaroulImage-content {
+    position: relative;
+    z-index: 10;
+    max-width: 560px;
+}
+
+.gg-CaroulImage-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(147, 51, 234, 0.15);
+    border: 1px solid rgba(147, 51, 234, 0.3);
+    color: #a78bfa;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.gg-CaroulImage-tag::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: #a78bfa;
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+}
+
+.gg-CaroulImage h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.gg-CaroulImage h1 .accent {
+    color: var(--cyan);
+}
+
+.gg-CaroulImage-sub {
+    font-size: 0.9rem;
+    color: var(--muted2);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.gg-CaroulImage-btns {
+    display: flex;
+    gap: 0.75rem;
+}

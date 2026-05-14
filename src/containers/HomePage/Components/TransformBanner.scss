@@ -1,0 +1,147 @@
+/* =============================================
+   TransformBanner Component
+   ============================================= */
+.gg-transform-section {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+/* --- Backgrounds --- */
+.gg-transform-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(9, 9, 9, 1) 0%, rgba(9, 9, 9, 0) 20%, rgba(9, 9, 9, 0) 80%, rgba(9, 9, 9, 1) 100%),
+        radial-gradient(ellipse 60% 60% at 50% 50%, rgba(147, 51, 234, 0.08) 0%, transparent 70%);
+}
+
+/* --- Tunnel animation --- */
+.gg-tunnel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gg-tunnel-line {
+    position: absolute;
+    border: 1px solid rgba(0, 232, 213, 0.05);
+    animation: tunnelPush 4s linear infinite;
+}
+
+.gg-tunnel-line:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.gg-tunnel-line:nth-child(2) {
+    animation-delay: 0.8s;
+}
+
+.gg-tunnel-line:nth-child(3) {
+    animation-delay: 1.6s;
+}
+
+.gg-tunnel-line:nth-child(4) {
+    animation-delay: 2.4s;
+}
+
+.gg-tunnel-line:nth-child(5) {
+    animation-delay: 3.2s;
+}
+
+/* --- Perspective lines --- */
+.gg-persp-lines {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gg-persp-lines::before,
+.gg-persp-lines::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    border-left: 1px solid rgba(0, 232, 213, 0.04);
+    height: 100%;
+    transform-origin: bottom;
+}
+
+.gg-persp-lines::before {
+    transform: rotate(-15deg);
+}
+
+.gg-persp-lines::after {
+    transform: rotate(15deg);
+}
+
+/* --- Text --- */
+.gg-transform-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.gg-transform-text h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.gg-transform-text h2 em {
+    font-style: italic;
+    color: var(--cyan);
+}
+
+/* --- CTA button --- */
+.gg-transform-cta {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    padding: 0.8rem 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.gg-transform-cta:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: rgba(0, 232, 213, 0.04);
+}
+
+.gg-transform-cta svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    transition: transform 0.2s;
+}
+
+.gg-transform-cta:hover svg {
+    transform: translateX(3px);
+}

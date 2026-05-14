@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@300;400;500;600&display=swap');
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- CSS Variables ---------- */
+:root {
+    --bg: #090909;
+    --bg2: #0f0f0f;
+    --bg3: #141414;
+    --card: #111111;
+    --card2: #161616;
+    --cyan: #00e8d5;
+    --cyan2: #00c4b4;
+    --purple: #9333ea;
+    --purple2: #7c3aed;
+    --white: #f0f0f0;
+    --muted: #666;
+    --muted2: #888;
+    --border: rgba(255, 255, 255, 0.06);
+    --border2: rgba(0, 232, 213, 0.2);
+}
+
+/* ---------- Base ---------- */
+html {
+    scroll-behavior: smooth;
+    // overflow-x: clip;
+}
+
+html,
+body {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+    scrollbar-width: none;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+    cursor: auto;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 232, 213, 0.3);
+}
+
+/* ---------- Shared Buttons ---------- */
+.btn-solid {
+    background: var(--cyan);
+    color: #050f0e;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.btn-solid:hover {
+    background: #00c4b4;
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.8rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- Section Header Shared ---------- */
+.sec-overline {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.sec-overline span {
+    color: var(--cyan);
+}
+
+.sec-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.sec-title::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--cyan);
+    margin-top: 0.5rem;
+}
+
+/* ---------- Scroll Reveal ---------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 {
+    transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+    transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+    transition-delay: 0.3s;
+}
+
+/* ---------- Shared Keyframes ---------- */
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes floatP {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes rgbFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 0% 200%;
+    }
+}
+
+@keyframes spinFan {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes tunnelPush {
+    0% {
+        width: 800px;
+        height: 600px;
+        opacity: 0.1;
+    }
+
+    100% {
+        width: 100px;
+        height: 80px;
+        opacity: 0;
+        transform: scale(0.1);
+    }
+}

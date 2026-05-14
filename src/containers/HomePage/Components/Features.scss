@@ -1,0 +1,69 @@
+/* =============================================
+   Features Component
+   ============================================= */
+.gg-features-sec {
+    padding: 5rem 5%;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.gg-feat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+}
+
+.gg-feat-item {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+}
+
+.gg-feat-item:last-child {
+    border-right: none;
+}
+
+.gg-feat-item:hover {
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.gg-feat-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.gg-feat-icon svg {
+    width: 26px;
+    height: 26px;
+    stroke: var(--cyan);
+    fill: none;
+    stroke-width: 1.3;
+}
+
+.gg-feat-icon.purple svg {
+    stroke: #a78bfa;
+}
+
+.gg-feat-icon.white-icon svg {
+    stroke: var(--white);
+    opacity: 0.7;
+}
+
+.gg-feat-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+}
+
+.gg-feat-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+}

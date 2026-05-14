@@ -1,0 +1,107 @@
+/* =============================================
+   Navbar Component
+   ============================================= */
+.gg-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3%;
+    height: 56px;
+    background: rgba(9, 9, 9, 0.92);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    transition: height 0.25s ease;
+}
+
+.gg-nav.scrolled {
+    height: 48px;
+}
+
+.gg-nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--cyan);
+    text-decoration: none;
+}
+
+.gg-nav-logo span {
+    color: rgba(0, 232, 213, 0.4);
+}
+
+.gg-nav-links {
+    display: flex;
+    gap: 2.2rem;
+    list-style: none;
+}
+
+.gg-nav-links a {
+    color: var(--muted2);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.gg-nav-links a:hover {
+    color: var(--white);
+}
+
+.gg-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.gg-nav-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.gg-nav-icon:hover {
+    border-color: var(--border2);
+}
+
+.gg-nav-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke: var(--muted2);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+
+.language-vi {
+    &.active {
+        span {
+            color: orange
+        }
+    }
+}
+
+.language-en {
+    &.active {
+        span {
+            color: orange
+        }
+    }
+}
+
+.welcome {
+    margin-right: 10px;
+}
