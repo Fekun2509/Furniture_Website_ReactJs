@@ -10,9 +10,18 @@ export const userIsAuthenticated = connectedRouterRedirect({
 });
 
 export const userIsNotAuthenticated = connectedRouterRedirect({
-    // Want to redirect the user when they are authenticated
     authenticatedSelector: state => !state.user.isLoggedIn,
     wrapperDisplayName: 'UserIsNotAuthenticated',
     redirectPath: (state, ownProps) => locationHelper.getRedirectQueryParam(ownProps) || '/',
     allowRedirectBack: false
+});
+
+// Chỉ admin và staff mới được vào /system — customer bị đá về /home
+export const userIsAdminOrStaff = connectedRouterRedirect({
+    authenticatedSelector: state => {
+        const role = state.user.userInfo?.role;
+        return role === 'admin' || role === 'staff';
+    },
+    wrapperDisplayName: 'UserIsAdminOrStaff',
+    redirectPath: '/home',
 });

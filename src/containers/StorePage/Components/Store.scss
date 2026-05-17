@@ -1,0 +1,766 @@
+/* =============================================
+   Store Page
+   ============================================= */
+
+.gg-store-page {
+    min-height: 100vh;
+    background: var(--bg);
+    padding-top: 56px; // offset fixed navbar
+}
+
+/* ── Hero ────────────────────────────────────── */
+.gg-store-hero {
+    padding: 3rem 5% 2.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.gg-store-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+
+    a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+
+        &:hover { color: var(--white); }
+    }
+}
+
+.gg-bc-sep {
+    color: var(--muted);
+    opacity: 0.4;
+}
+
+.gg-store-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+
+    em {
+        font-style: italic;
+        color: var(--cyan);
+    }
+}
+
+.gg-store-title-line {
+    width: 48px;
+    height: 2px;
+    background: var(--cyan);
+    margin-bottom: 0.8rem;
+}
+
+.gg-store-subtitle {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+
+    strong { color: var(--white); font-weight: 600; }
+}
+
+/* ── Body layout ─────────────────────────────── */
+.gg-store-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0 5%;
+    margin-top: 2rem;
+}
+
+/* ── Sidebar ─────────────────────────────────── */
+.gg-sidebar {
+    width: 190px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 72px;
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--border);
+}
+
+.gg-sidebar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.gg-sidebar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+.gg-sidebar-reset {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s;
+
+    &:hover { color: var(--cyan); }
+}
+
+.gg-sidebar-block {
+    margin-bottom: 1.6rem;
+}
+
+.gg-sidebar-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+}
+
+/* Search */
+.gg-sidebar-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 0 0.7rem;
+    height: 36px;
+    transition: border-color 0.2s;
+
+    svg {
+        width: 13px;
+        height: 13px;
+        color: var(--muted);
+        flex-shrink: 0;
+    }
+
+    input {
+        flex: 1;
+        min-width: 0;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--white);
+        font-family: 'Barlow', sans-serif;
+        font-size: 0.78rem;
+
+        &::placeholder { color: var(--muted); }
+    }
+
+    &:focus-within {
+        border-color: rgba(0, 232, 213, 0.25);
+    }
+}
+
+/* Category buttons */
+.gg-sidebar-cat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--muted2);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.7rem;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: var(--border);
+        color: var(--white);
+    }
+
+    &.active {
+        background: rgba(0, 232, 213, 0.1);
+        border-color: var(--cyan);
+        color: var(--cyan);
+
+        .gg-cat-badge {
+            background: var(--cyan);
+            color: #050f0e;
+        }
+    }
+}
+
+.gg-cat-badge {
+    font-size: 0.58rem;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--muted);
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    min-width: 20px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+/* Price inputs */
+.gg-price-inputs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.gg-price-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    label {
+        font-size: 0.56rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+    }
+
+    input {
+        width: 100%;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        color: var(--white);
+        font-family: 'Barlow', sans-serif;
+        font-size: 0.72rem;
+        padding: 0.3rem 0.5rem;
+        outline: none;
+        transition: border-color 0.2s;
+
+        &:focus { border-color: rgba(0, 232, 213, 0.25); }
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button { -webkit-appearance: none; }
+    }
+}
+
+/* Dual range slider */
+.gg-range-wrap {
+    position: relative;
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.gg-range-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+}
+
+.gg-range-fill {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: var(--cyan);
+    z-index: 1;
+}
+
+.gg-range {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    appearance: none;
+    background: transparent;
+    pointer-events: none;
+    z-index: 2;
+
+    &::-webkit-slider-thumb {
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--cyan);
+        border: 2px solid #0a0a0a;
+        pointer-events: all;
+        cursor: pointer;
+        transition: transform 0.15s;
+
+        &:hover { transform: scale(1.2); }
+    }
+
+    &::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--cyan);
+        border: 2px solid #0a0a0a;
+        pointer-events: all;
+        cursor: pointer;
+    }
+}
+
+.gg-range-lo { z-index: 3; }
+.gg-range-hi { z-index: 4; }
+
+.gg-range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.4rem;
+    font-size: 0.62rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+/* Sort select */
+.gg-sidebar-select-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    select {
+        width: 100%;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        color: var(--white);
+        font-family: 'Barlow', sans-serif;
+        font-size: 0.78rem;
+        padding: 0.45rem 2rem 0.45rem 0.7rem;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.2s;
+
+        &:focus { border-color: rgba(0, 232, 213, 0.25); }
+
+        option {
+            background: var(--bg3);
+            color: var(--white);
+        }
+    }
+
+    svg {
+        position: absolute;
+        right: 0.5rem;
+        width: 14px;
+        height: 14px;
+        color: var(--muted);
+        pointer-events: none;
+    }
+}
+
+/* Apply button */
+.gg-sidebar-apply {
+    width: 100%;
+    background: var(--cyan);
+    border: none;
+    color: #050f0e;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.15s;
+
+    &:hover {
+        background: var(--cyan2);
+        transform: translateY(-1px);
+    }
+
+    &:active { transform: translateY(0); }
+}
+
+/* ── Main content ────────────────────────────── */
+.gg-store-main {
+    flex: 1;
+    min-width: 0;
+    padding-left: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* Toolbar */
+.gg-store-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.gg-toolbar-info {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+
+    strong { color: var(--white); font-weight: 600; }
+}
+
+.gg-view-toggle {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.gg-view-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+
+    svg { width: 14px; height: 14px; }
+
+    &:hover { border-color: var(--border2); color: var(--white); }
+
+    &.active {
+        background: var(--cyan);
+        border-color: var(--cyan);
+        color: #050f0e;
+    }
+}
+
+/* ── Product grid ────────────────────────────── */
+.gg-prod-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+
+    &.is-list {
+        grid-template-columns: 1fr;
+
+        .gg-prod-card {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .gg-prod-img {
+            width: 200px;
+            flex-shrink: 0;
+            height: auto;
+        }
+
+        .gg-prod-info {
+            padding: 1.5rem;
+        }
+    }
+}
+
+/* ── Product card ────────────────────────────── */
+.gg-prod-card {
+    background: var(--card);
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s;
+    cursor: pointer;
+
+    &:hover {
+        background: var(--card2);
+
+        .gg-prod-thumb {
+            transform: scale(1.04);
+        }
+    }
+}
+
+/* Image area */
+.gg-prod-img {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0b0d10 0%, #080a0c 100%);
+}
+
+.gg-prod-thumb {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.85;
+    transition: transform 0.4s ease, opacity 0.3s;
+
+    .gg-prod-card:hover & { opacity: 0.95; }
+}
+
+.gg-prod-no-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    svg {
+        width: 36px;
+        height: 36px;
+        color: rgba(255, 255, 255, 0.06);
+    }
+}
+
+/* Badge */
+.gg-prod-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+}
+
+.gg-badge-sale {
+    background: var(--cyan);
+    color: #050f0e;
+}
+
+.gg-badge-new {
+    background: var(--purple);
+    color: #fff;
+}
+
+/* Info area */
+.gg-prod-info {
+    padding: 1rem 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.gg-prod-cat {
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.gg-prod-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.2;
+}
+
+/* Stars */
+.gg-prod-stars {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    margin-top: 0.15rem;
+}
+
+.gg-star {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.15);
+    line-height: 1;
+
+    &.filled { color: var(--cyan); }
+}
+
+.gg-star-label {
+    font-size: 0.6rem;
+    color: var(--muted);
+    margin-left: 0.3rem;
+    letter-spacing: 0.04em;
+}
+
+/* Footer: price + cart */
+.gg-prod-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 0.6rem;
+}
+
+.gg-prod-pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.gg-price-old {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+.gg-price-sell {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: 0.02em;
+}
+
+.gg-cart-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 232, 213, 0.08);
+    border: 1px solid rgba(0, 232, 213, 0.2);
+    color: var(--cyan);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+
+    svg {
+        width: 13px;
+        height: 13px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+    }
+
+    &:hover {
+        background: var(--cyan);
+        color: #050f0e;
+    }
+}
+
+/* ── Empty state ─────────────────────────────── */
+.gg-store-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.gg-empty-ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 232, 213, 0.15);
+    box-shadow: 0 0 0 10px rgba(0, 232, 213, 0.04);
+    margin-bottom: 1.5rem;
+}
+
+.gg-empty-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 0.3rem;
+}
+
+.gg-empty-sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+/* ── Pagination ──────────────────────────────── */
+.gg-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.gg-page-btn {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted2);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+        border-color: var(--border2);
+        color: var(--cyan);
+    }
+
+    &.active {
+        background: var(--cyan);
+        border-color: var(--cyan);
+        color: #050f0e;
+    }
+
+    &:disabled {
+        opacity: 0.25;
+        cursor: not-allowed;
+    }
+}
+
+.gg-page-ellipsis {
+    color: var(--muted);
+    font-size: 0.8rem;
+    padding: 0 0.15rem;
+    user-select: none;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 1100px) {
+    .gg-prod-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 860px) {
+    .gg-store-body {
+        flex-direction: column;
+    }
+
+    .gg-sidebar {
+        width: 100%;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-right: 0;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .gg-store-main {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .gg-prod-grid {
+        grid-template-columns: 1fr;
+    }
+}

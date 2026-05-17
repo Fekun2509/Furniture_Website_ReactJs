@@ -21,4 +21,12 @@ const getAllProductService = (inputData) => {
 }
 
 
-export default { getAllCategoriesService, createNewProductService, uploadImage, getAllProductService } 
+const editProductService = (data) => {
+    return axios.put(`/api/edit-product`, data);
+}
+
+const deleteProductService = (id) => {
+    return axios.delete(`/api/delete-product?id=${id}`);
+}
+
+export default { getAllCategoriesService, createNewProductService, uploadImage, getAllProductService, editProductService, deleteProductService }

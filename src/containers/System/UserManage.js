@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
 import userService from '../../services/userService';
 import ModalUser from './ModalUser';
 import ModalEditUser from './ModalEditUser';
 import { emitter } from '../../utils/emitter';
-import Cursor from '../Cursor/Cursor';
+import { ROLES } from '../../utils/roles';
 
 class UserManage extends Component {
 
@@ -112,75 +111,87 @@ class UserManage extends Component {
 
     }
 
-    /* 
-        Life cycle
-        Run component:
-        1.Run contructor -> init state
-        2. Didmount() -> Set State
-        3. render()
-    
-    
-    
-    */
     render() {
-        let arrUsers = this.state.arrUsers
+        const { userRole, filterRole } = this.props;
+        const isAdmin = userRole === ROLES.ADMIN;
+
+        const arrUsers = filterRole
+            ? this.state.arrUsers.filter(u => u.role === filterRole)
+            : this.state.arrUsers;
+
+        const TITLE_MAP = {
+            admin:    <><span>Admin</span> List</>,
+            staff:    <><span>Staff</span> List</>,
+            customer: <>Customer <span>List</span></>,
+        };
+
         return (
-            <div className="users-container">
-                {/* <Cursor></Cursor> */}
-                <ModalUser isOpen={this.state.isOpenModalUser} toggleFromParent={this.toggleUserModal} createNewUser={this.createNewUser}>
+            <div className="um-page">
+                <ModalUser isOpen={this.state.isOpenModalUser} toggleFromParent={this.toggleUserModal} createNewUser={this.createNewUser} />
 
-                </ModalUser>
-
-                {
-                    this.state.isOpenModalEditUser &&
+                {this.state.isOpenModalEditUser && (
                     <ModalEditUser isOpen={this.state.isOpenModalEditUser} toggleFromParent={this.toggleEditModal} currentUser={this.state.userEdit}
-                        editUser={this.doEditUser}>
+                        editUser={this.doEditUser} />
+                )}
 
-                    </ModalEditUser>
-                }
-                <div className='title text-center'>Manage users with Leo</div>
-                <div className='mx-1'>
-                    <button className='btn btn-primary px-3' onClick={() => this.handleAddNewUser()}><i className="fas fa-plus px-1"></i>Add new user</button>
+                <div className="um-header">
+                    <div className="um-title">
+                        {TITLE_MAP[filterRole] || <><span>User</span> Management</>}
+                    </div>
+                    <button className="um-add-btn" onClick={() => this.handleAddNewUser()}>
+                        <i className="fas fa-plus" />
+                        Add User
+                    </button>
                 </div>
 
-                <div className='usersTable mt-3 mx-1'>
-                    <table>
-                        <tbody>
+                <div className="um-card">
+                    <table className="um-table">
+                        <thead>
                             <tr>
-                                <th className='col-2'>Email</th>
-                                <th className='col-2'>Full name</th>
-                                <th className='col-2'>Address</th>
-                                <th className='col-2'>Phone number</th>
-                                <th className='col-1'>Gender</th>
-                                <th className='col-1'>Role</th>
-                                <th className='col-1'>Action</th>
-
+                                <th>Email</th>
+                                <th>Full Name</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Gender</th>
+                                {isAdmin && <th>Role</th>}
+                                <th>Actions</th>
                             </tr>
-
-                            {
-                                arrUsers && arrUsers.map((item, index) => {
-                                    return (
-                                        <tr className='divClass'>
-                                            <td >{item.email}</td>
-                                            <td >{item.fullname}</td>
-                                            <td >{item.address}</td>
-                                            <td >{item.phone}</td>
-                                            <td >{item.gender}</td>
-                                            <td >{item.role}</td>
-                                            <td >
-                                                <button className='btn-edit' onClick={() => this.handleEditUser(item)}><i className="fas fa-pencil-alt"></i></button>
-                                                <button className='btn-delete' onClick={() => this.handleDeleteUser(item)}><i className="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                            }
+                        </thead>
+                        <tbody>
+                            {arrUsers && arrUsers.length > 0 ? arrUsers.map((item, index) => (
+                                <tr key={index}>
+                                    <td className="um-td-email">{item.email}</td>
+                                    <td className="um-td-name">{item.fullname}</td>
+                                    <td>{item.address}</td>
+                                    <td>{item.phone}</td>
+                                    <td>
+                                        <span className={`um-gender-badge ${item.gender}`}>
+                                            {item.gender}
+                                        </span>
+                                    </td>
+                                    {isAdmin && (
+                                        <td>
+                                            <span className={`um-role-badge ${item.role}`}>
+                                                {item.role}
+                                            </span>
+                                        </td>
+                                    )}
+                                    <td>
+                                        <div className="um-actions">
+                                            <button className="um-icon-btn edit" onClick={() => this.handleEditUser(item)} title="Edit">
+                                                <i className="fas fa-pencil-alt" />
+                                            </button>
+                                            <button className="um-icon-btn delete" onClick={() => this.handleDeleteUser(item)} title="Delete">
+                                                <i className="fas fa-trash" />
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            )) : (
+                                <tr><td colSpan={isAdmin ? 7 : 6} className="um-empty">No users found</td></tr>
+                            )}
                         </tbody>
-
-
-
                     </table>
-
                 </div>
             </div>
         );
@@ -188,14 +199,8 @@ class UserManage extends Component {
 
 }
 
-const mapStateToProps = state => {
-    return {
-    };
-};
+const mapStateToProps = state => ({
+    userRole: state.user.userInfo?.role,
+});
 
-const mapDispatchToProps = dispatch => {
-    return {
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserManage);
+export default connect(mapStateToProps)(UserManage);

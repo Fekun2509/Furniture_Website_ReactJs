@@ -1,117 +1,96 @@
-@import "../styles/common.scss";
-
 .navigator-menu {
-    display: flex;
+    list-style: none;
+    padding: 0.5rem 0 1rem;
     margin: 0;
-    padding: 0;
-
-    &.list-unstyled,
-    .list-unstyled {
-        list-style-type: none;
-    }
 
     .menu-group {
-        &:hover {
-            cursor: pointer;
-            background-color: darken($colormain, 5);
-        }
+        margin-bottom: 0.25rem;
 
         .menu-group-name {
-            line-height: 40px;
-            padding: 0 15px;
-            border-right: 1px solid $border;
-
-            &:first-child {
-                border-left: 1px solid $border;
-            }
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.2);
+            padding: 1rem 1.25rem 0.35rem;
+            line-height: 1;
+            border: none;
         }
 
         .menu-list {
-            display: none;
-            background-color: $bg-menu-color;
-            box-shadow: 2px 2px 4px 0 $box-shadow-color;
-            -webkit-box-shadow: 2px 2px 4px 0 $box-shadow-color;
-            color: $text-in-light;
-            position: absolute;
+            list-style: none;
             padding: 0;
+            margin: 0;
 
             .menu {
-                width: 205px;
-                padding: 0 15px;
-                height: 35px;
-                line-height: 35px;
-                text-transform: none;
+                position: relative;
 
                 .menu-link {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.55rem 1.25rem;
+                    font-size: 0.8rem;
+                    font-weight: 500;
+                    color: #666;
                     text-decoration: none;
-                    color: $text-in-light;
+                    cursor: pointer;
+                    transition: color 0.15s, background 0.15s, border-color 0.15s;
+                    border-left: 2px solid transparent;
+                    letter-spacing: 0.02em;
+                    user-select: none;
+
+                    &:hover {
+                        color: #c0c0c0;
+                        background: rgba(255, 255, 255, 0.03);
+                    }
+
+                    &.open {
+                        color: #c0c0c0;
+                    }
+
+                    .icon-right {
+                        position: static;
+                        font-size: 0.7rem;
+                        opacity: 0.5;
+                    }
+                }
+
+                &.active > .menu-link {
+                    color: #00e8d5;
+                    border-left-color: #00e8d5;
+                    background: rgba(0, 232, 213, 0.05);
                 }
 
                 .sub-menu-list {
-                    display: none;
-                    background-color: $bg-menu-color;
-                    box-shadow: 2px 2px 4px 0 $box-shadow-color;
-                    -webkit-box-shadow: 2px 2px 4px 0 $box-shadow-color;
-                    position: absolute;
-                    top: 0;
-                    left: 205px;
-                    padding: 0;
+                    list-style: none;
+                    padding: 0.15rem 0;
+                    margin: 0;
 
                     .sub-menu {
-                        padding: 0 15px;
-                        height: 35px;
-                        line-height: 35px;
-                        white-space: nowrap;
-
-                        &:hover {
-                            background-color: darken($bg-menu-color, 5);
-                        }
-
                         .sub-menu-link {
-                            text-decoration: none;
-                            color: $text-in-light;
-                        }
-
-                        a {
                             display: block;
-                        }
+                            padding: 0.45rem 1.25rem 0.45rem 2.25rem;
+                            font-size: 0.76rem;
+                            color: #555;
+                            text-decoration: none;
+                            transition: color 0.15s, background 0.15s;
+                            border-left: 2px solid transparent;
 
-                        &.active {
-                            a {
-                                color: orange;
+                            &:hover {
+                                color: #c0c0c0;
+                                background: rgba(255, 255, 255, 0.02);
                             }
+                        }
 
-                            background-color: rgb(203, 210, 218);
-
+                        &.active .sub-menu-link {
+                            color: #00e8d5;
+                            border-left-color: rgba(0, 232, 213, 0.4);
+                            background: rgba(0, 232, 213, 0.04);
                         }
                     }
                 }
-
-                &.active span {
-                    font-weight: 500;
-                    color: $colormain;
-                }
-
-                &:hover {
-                    background-color: darken($bg-menu-color, 3);
-
-                    .sub-menu-list {
-                        display: block;
-                    }
-                }
-
-                .icon-right {
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    right: 10px;
-                }
-            }
-        }
-
-        &:hover {
-            .menu-list {
-                display: block;
             }
         }
     }

@@ -12,6 +12,13 @@
     gap: 0.4rem;
 }
 
+/* --- Link wrapper reset --- */
+.gg-cat-card--link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
 /* --- Base card --- */
 .gg-cat-card {
     position: relative;

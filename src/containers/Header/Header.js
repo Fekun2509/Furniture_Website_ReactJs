@@ -1,60 +1,55 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { LANGUAGES } from '../../utils';
-import * as actions from "../../store/actions";
-import Navigator from '../../components/Navigator';
-import { adminMenu } from './menuApp';
+import * as actions from '../../store/actions';
 import './Header.scss';
-import { FormattedMessage } from 'react-intl';
-import { userInfo } from 'os';
 
 class Header extends Component {
 
     handleChangeLanguage = (language) => {
-        this.props.changeLanguageAppRedux(language)
+        this.props.changeLanguageAppRedux(language);
     }
 
     render() {
         const { processLogout, language, userInfo } = this.props;
-        // console.log('check userInfo: ', this.props.userInfo)
         return (
-            <div className="header-container">
-                {/* thanh navigator */}
-                <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+            <div className="adm-topbar">
+                <div className="adm-topbar-left">
+                    <span className="adm-welcome">
+                        Xin chào, <strong>{userInfo?.fullname || 'Admin'}</strong>
+                    </span>
                 </div>
 
-                <div className='languages'>
-                    <span className='welcome'><FormattedMessage id="homeheader.welcome" /> {userInfo && userInfo.fullName ? userInfo.fullName : ''}!</span>
-                    <span className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'} onClick={() => this.handleChangeLanguage(LANGUAGES.VI)} >VN</span>
-                    <span className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'} onClick={() => this.handleChangeLanguage(LANGUAGES.EN)}>EN</span>
-                    {/* nút logout */}
-                    <div className="btn btn-logout" onClick={processLogout} title="Log out">
-                        <i className="fas fa-sign-out-alt"></i>
-                    </div>
+                <div className="adm-topbar-right">
+                    <span
+                        className={`adm-lang${language === LANGUAGES.VI ? ' active' : ''}`}
+                        onClick={() => this.handleChangeLanguage(LANGUAGES.VI)}
+                    >VN</span>
+                    <span className="adm-lang-sep">|</span>
+                    <span
+                        className={`adm-lang${language === LANGUAGES.EN ? ' active' : ''}`}
+                        onClick={() => this.handleChangeLanguage(LANGUAGES.EN)}
+                    >EN</span>
+
+                    <button className="adm-logout-btn" onClick={processLogout} title="Đăng xuất">
+                        <i className="fas fa-sign-out-alt" />
+                        <span>Đăng xuất</span>
+                    </button>
                 </div>
-
-
-
             </div>
         );
     }
-
 }
 
-const mapStateToProps = state => {
-    return {
-        isLoggedIn: state.user.isLoggedIn,
-        userInfo: state.user.userInfo,
-        language: state.app.language
-    };
-};
+const mapStateToProps = state => ({
+    isLoggedIn: state.user.isLoggedIn,
+    userInfo: state.user.userInfo,
+    language: state.app.language,
+});
 
-const mapDispatchToProps = dispatch => {
-    return {
-        processLogout: () => dispatch(actions.processLogout()),
-        changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language))
-    };
-};
+const mapDispatchToProps = dispatch => ({
+    processLogout: () => dispatch(actions.processLogout()),
+    changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

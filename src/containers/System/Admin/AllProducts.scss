@@ -1,4 +1,245 @@
-.preview-image {
-    width: 100px;
-    height: 100px;
+.ap-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ap-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ap-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #e0e0e0;
+    text-transform: uppercase;
+
+    span { color: #00e8d5; }
+}
+
+.ap-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1px solid #00e8d5;
+    color: #00e8d5;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+
+    i { font-size: 0.7rem; }
+
+    &:hover {
+        background: #00e8d5;
+        color: #050f0e;
+    }
+}
+
+.ap-count {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+}
+
+.ap-card {
+    background: #0c0c0c;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.ap-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+
+    thead tr {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    th {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.25);
+        padding: 0.75rem 1rem;
+        text-align: left;
+        white-space: nowrap;
+        background: transparent;
+    }
+
+    td {
+        padding: 0.7rem 1rem;
+        color: #777;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        vertical-align: middle;
+    }
+
+    tbody tr {
+        transition: background 0.12s;
+
+        &:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        &:last-child td {
+            border-bottom: none;
+        }
+    }
+}
+
+.ap-product-name {
+    color: #c0c0c0;
+    font-weight: 500;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ap-desc {
+    color: #555;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.75rem;
+}
+
+.ap-category-badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid rgba(0, 232, 213, 0.2);
+    color: rgba(0, 232, 213, 0.6);
+}
+
+.ap-price-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    white-space: nowrap;
+}
+
+.ap-sell-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #00e8d5;
+}
+
+.ap-base-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    color: #444;
+    text-decoration: line-through;
+}
+
+.ap-discount-badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #f05050;
+    border: 1px solid rgba(240, 80, 80, 0.3);
+    padding: 0 0.3rem;
+    align-self: flex-start;
+}
+
+.ap-stock {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+
+    &.in { color: #4caf82; }
+    &.low { color: #f0c050; }
+    &.out { color: #f05050; }
+}
+
+.ap-images {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ap-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+}
+
+.ap-thumb-more {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.6rem;
+    color: #555;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+.ap-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.ap-icon-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    font-size: 0.7rem;
+
+    &.edit:hover {
+        color: #f0c050;
+        border-color: rgba(240, 192, 80, 0.3);
+    }
+
+    &.delete:hover {
+        color: #f05050;
+        border-color: rgba(240, 80, 80, 0.3);
+    }
+}
+
+.ap-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #333;
+    font-size: 0.8rem;
+    font-style: italic;
 }

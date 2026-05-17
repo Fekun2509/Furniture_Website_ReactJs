@@ -5,14 +5,16 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
 import '../containers/global.scss'
-import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
+import { userIsAuthenticated, userIsNotAuthenticated, userIsAdminOrStaff } from '../hoc/authentication';
 import { path } from '../utils'
 import Home from '../routes/Home';
 import Login from './Auth/Login';
 import System from '../routes/System';
 import { CustomToastCloseButton } from '../components/CustomToast';
 import HomePage from './HomePage/HomePage.js'
-import { unset } from 'lodash';
+import StorePage from './StorePage/StorePage.js'
+import ProductDetailPage from './StorePage/ProductDetailPage.js'
+import CartDrawer from './Cart/CartDrawer.js'
 
 class App extends Component {
 
@@ -44,10 +46,14 @@ class App extends Component {
                             <Switch>
                                 <Route path={path.HOME} exact component={(Home)} />
                                 <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
-                                <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                <Route path={path.SYSTEM} component={userIsAuthenticated(userIsAdminOrStaff(System))} />
                                 <Route path={path.HOMEPAGE} component={HomePage} />
+                                <Route path={path.STORE} component={StorePage} />
+                                <Route path={`${path.PRODUCT}/:id`} component={ProductDetailPage} />
                             </Switch>
                         </div>
+
+                        <CartDrawer />
 
                         <ToastContainer
                             className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
@@ -62,16 +68,4 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        started: state.app.started,
-        isLoggedIn: state.user.isLoggedIn
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect()(App);

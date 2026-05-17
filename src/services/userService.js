@@ -31,4 +31,12 @@ const editUserService = (inputData) => {
 }
 
 
-export default { handleLogin, getAllUsers, createNewUserService, deleteUserService, editUserService } 
+const handleGoogleLogin = (accessToken) => {
+    return axios.post('/api/auth/google', { accessToken })
+}
+
+const handleFacebookLogin = (accessToken, userId) => {
+    return axios.post('/api/auth/facebook', { accessToken, userId })
+}
+
+export default { handleLogin, getAllUsers, createNewUserService, deleteUserService, editUserService, handleGoogleLogin, handleFacebookLogin }

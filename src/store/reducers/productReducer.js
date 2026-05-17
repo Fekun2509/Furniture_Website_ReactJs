@@ -8,10 +8,6 @@ const initialState = {
 
 const productReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case actionTypes.FETCH_CATEGORY_START:
-        //     return {
-        //         ...state,
-        //     }
         case actionTypes.FETCH_CATEGORY_SUCCESS:
             state.categories = action.categories
             return {

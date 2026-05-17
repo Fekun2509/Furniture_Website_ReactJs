@@ -105,3 +105,178 @@
 .welcome {
     margin-right: 10px;
 }
+
+.gg-cart-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+/* ── Login button (chưa đăng nhập) ── */
+.gg-login-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border2);
+    color: var(--cyan);
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--cyan);
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        background: rgba(0, 232, 213, 0.06);
+    }
+}
+
+/* ── User menu (đã đăng nhập) ── */
+.gg-user-menu {
+    position: relative;
+}
+
+.gg-user-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.6rem 0.25rem 0.3rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+
+    &:hover {
+        border-color: var(--border2);
+    }
+}
+
+.gg-user-avatar {
+    width: 24px;
+    height: 24px;
+    background: var(--cyan);
+    color: #050f0e;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.gg-user-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    max-width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gg-user-chevron {
+    width: 12px;
+    height: 12px;
+    stroke: var(--muted2);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+
+    &.open {
+        transform: rotate(180deg);
+    }
+}
+
+.gg-user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 200px;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    z-index: 200;
+    animation: dropdown-in 0.15s ease;
+}
+
+@keyframes dropdown-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.gg-user-dropdown-info {
+    padding: 0.85rem 1rem;
+}
+
+.gg-user-dropdown-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+}
+
+.gg-user-dropdown-email {
+    font-size: 0.68rem;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gg-user-dropdown-divider {
+    height: 1px;
+    background: var(--border);
+}
+
+.gg-user-dropdown-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--muted2);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        background: rgba(255,255,255,0.04);
+        color: var(--white);
+    }
+}
+
+.gg-cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--cyan);
+    color: #050f0e;
+    font-size: 0.55rem;
+    font-weight: 800;
+    font-family: 'Barlow Condensed', sans-serif;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    pointer-events: none;
+}

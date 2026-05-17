@@ -86,3 +86,25 @@ export const saveProductSuccess = (data) => ({
 export const saveProductFailed = () => ({
     type: 'SAVE_PRODUCT_FAILED'
 })
+
+export const editProduct = (data) => {
+    return async (dispatch) => {
+        try {
+            let res = await productService.editProductService(data);
+            return res;
+        } catch (e) {
+            console.log('editProduct error', e);
+        }
+    }
+}
+
+export const deleteProduct = (id) => {
+    return async (dispatch) => {
+        try {
+            let res = await productService.deleteProductService(id);
+            return res;
+        } catch (e) {
+            console.log('deleteProduct error', e);
+        }
+    }
+}

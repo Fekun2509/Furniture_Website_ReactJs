@@ -1,44 +1,11 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import * as actions from '../../../store/actions';
 import './FeaturedProducts.scss';
 
-const PRODUCTS = [
-    {
-        id: 1,
-        bgClass: 'gg-img-bg-1',
-        tag: { label: '-15%', type: 'sale' },
-        image: 'https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=600&auto=format&fit=crop',
-        name: 'Bàn Carbon APEX',
-        price: '₫8.990.000',
-        delay: '',
-    },
-    {
-        id: 2,
-        bgClass: 'gg-img-bg-2',
-        tag: null,
-        image: 'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=600&auto=format&fit=crop',
-        name: 'Ghế ZENITH THRONE',
-        price: '₫12.490.000',
-        delay: 'reveal-delay-1',
-    },
-    {
-        id: 3,
-        bgClass: 'gg-img-bg-3',
-        tag: { label: 'Mới nhất', type: 'new' },
-        image: 'https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&auto=format&fit=crop',
-        name: 'Combo Commander Tối Thượng',
-        price: '₫32.000.000',
-        delay: 'reveal-delay-2',
-    },
-    {
-        id: 4,
-        bgClass: 'gg-img-bg-4',
-        tag: null,
-        image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&auto=format&fit=crop',
-        name: 'Cánh Tay RGB PHOTON',
-        price: '₫2.290.000',
-        delay: 'reveal-delay-3',
-    },
-];
+const BG_CLASSES = ['gg-img-bg-1', 'gg-img-bg-2', 'gg-img-bg-3', 'gg-img-bg-4'];
+const DELAYS     = ['', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3'];
 
 const CartIcon = () => (
     <svg viewBox="0 0 24 24">
@@ -49,7 +16,42 @@ const CartIcon = () => (
 );
 
 class FeaturedProducts extends Component {
+    componentDidMount() {
+        this.props.fetchProductRedux();
+    }
+
+    getFirstImage(product) {
+        if (Array.isArray(product.image)) return product.image[0] || null;
+        if (typeof product.image === 'string') {
+            try { return JSON.parse(product.image)[0] || null; } catch { return null; }
+        }
+        return null;
+    }
+
+    formatPrice(price) {
+        return (parseFloat(price) || 0).toLocaleString('vi-VN') + '₫';
+    }
+
+    getDiscount(base, sell) {
+        const b = parseFloat(base) || 0;
+        const s = parseFloat(sell) || 0;
+        if (b > 0 && s > 0 && s < b) return Math.round((1 - s / b) * 100);
+        return null;
+    }
+
+    handleCardClick = (product) => {
+        this.props.history.push(`/product/${product.id}`, { product });
+    }
+
+    handleAddCart = (e, product) => {
+        e.stopPropagation();
+        this.props.cartAddItem(product, 1);
+    }
+
     render() {
+        const { listProducts } = this.props;
+        const featured = (listProducts || []).slice(0, 4);
+
         return (
             <section className="gg-featured" id="featured">
                 <div className="gg-section-head">
@@ -57,38 +59,96 @@ class FeaturedProducts extends Component {
                         <div className="sec-overline"><span>●</span> Sản phẩm nổi bật</div>
                         <div className="sec-title">Đơn vị nổi bật</div>
                     </div>
-                    <a href="#" className="gg-view-all">Xem danh mục →</a>
+                    <a href="/store" className="gg-view-all">Xem tất cả →</a>
                 </div>
 
                 <div className="gg-products-row">
-                    {PRODUCTS.map((p) => (
-                        <div key={p.id} className={`gg-prod-card reveal ${p.delay}`}>
-                            <div className={`gg-prod-img ${p.bgClass}`}>
-                                {p.tag && (
-                                    <div className={`gg-prod-tag ${p.tag.type === 'sale' ? 'gg-tag-sale' : 'gg-tag-new'}`}>
-                                        {p.tag.label}
-                                    </div>
-                                )}
-                                <div
-                                    className="gg-cat-inline-art"
-                                    style={{ backgroundImage: `url(${p.image})` }}
-                                />
-                            </div>
-                            <div className="gg-prod-body">
-                                <div className="gg-prod-name">{p.name}</div>
-                                <div className="gg-prod-footer">
-                                    <div className="gg-prod-price-main">{p.price}</div>
-                                    <button className="gg-add-cart-btn" aria-label="Thêm vào giỏ">
-                                        <CartIcon />
-                                    </button>
+                    {featured.length === 0 ? (
+                        /* Skeleton khi chưa load xong */
+                        [0, 1, 2, 3].map(i => (
+                            <div key={i} className={`gg-prod-card gg-prod-skeleton reveal ${DELAYS[i]}`}>
+                                <div className="gg-prod-img gg-skeleton-img" />
+                                <div className="gg-prod-body">
+                                    <div className="gg-skeleton-line" />
+                                    <div className="gg-skeleton-line short" />
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        featured.map((p, i) => {
+                            const image    = this.getFirstImage(p);
+                            const discount = this.getDiscount(p.base_price, p.sell_price);
+                            const inStock  = (parseInt(p.stock_qty) || 0) > 0;
+
+                            return (
+                                <div
+                                    key={p.id}
+                                    className={`gg-prod-card reveal ${DELAYS[i]}`}
+                                    onClick={() => this.handleCardClick(p)}
+                                >
+                                    <div className={`gg-prod-img ${BG_CLASSES[i]}`}>
+                                        {discount !== null && (
+                                            <div className="gg-prod-tag gg-tag-sale">-{discount}%</div>
+                                        )}
+                                        {!inStock && (
+                                            <div className="gg-prod-tag gg-tag-out">Hết hàng</div>
+                                        )}
+                                        {image ? (
+                                            <div
+                                                className="gg-cat-inline-art"
+                                                style={{ backgroundImage: `url(${image})` }}
+                                            />
+                                        ) : (
+                                            <div className="gg-prod-no-img">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                                    <path d="M21 15l-5-5L5 21" />
+                                                </svg>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="gg-prod-body">
+                                        <div className="gg-prod-name">{p.name}</div>
+                                        <div className="gg-prod-footer">
+                                            <div className="gg-prod-prices">
+                                                <span className="gg-prod-price-main">
+                                                    {this.formatPrice(p.sell_price)}
+                                                </span>
+                                                {discount !== null && (
+                                                    <span className="gg-prod-price-base">
+                                                        {this.formatPrice(p.base_price)}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <button
+                                                className="gg-add-cart-btn"
+                                                aria-label="Thêm vào giỏ"
+                                                disabled={!inStock}
+                                                onClick={(e) => this.handleAddCart(e, p)}
+                                            >
+                                                <CartIcon />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })
+                    )}
                 </div>
             </section>
         );
     }
 }
 
-export default FeaturedProducts;
+const mapStateToProps = state => ({
+    listProducts: state.product.products,
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchProductRedux: () => dispatch(actions.fetchAllProductStart()),
+    cartAddItem: (product, qty) => dispatch(actions.cartAddItem(product, qty)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FeaturedProducts));

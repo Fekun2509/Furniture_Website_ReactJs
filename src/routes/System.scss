@@ -1,4 +1,85 @@
-.system-container {
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap');
+
+/* ── Layout ─────────────────────────────────────────────────── */
+.sys-layout {
     display: flex;
-    justify-content: center;
+    min-height: 100vh;
+    background: #090909;
+    font-family: 'Barlow', sans-serif;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────── */
+.sys-sidebar {
+    width: 220px;
+    min-height: 100vh;
+    background: #0c0c0c;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+}
+
+.sys-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+}
+
+.sys-brand-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #00e8d5;
+    text-decoration: none;
+
+    em {
+        color: rgba(0, 232, 213, 0.35);
+        font-style: normal;
+    }
+}
+
+.sys-brand-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.5rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #050f0e;
+    background: #00e8d5;
+    padding: 0.15rem 0.35rem;
+    line-height: 1.4;
+}
+
+.sys-nav {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+}
+
+/* ── Main ────────────────────────────────────────────────────── */
+.sys-main {
+    margin-left: 220px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.sys-content {
+    flex: 1;
+    padding: 1.75rem 2rem;
 }

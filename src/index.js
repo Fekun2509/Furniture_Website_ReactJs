@@ -6,18 +6,20 @@ import './styles/styles.scss';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import IntlProviderWrapper from "./hoc/IntlProviderWrapper";
-
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import { Provider } from 'react-redux';
 import reduxStore, { persistor } from './redux';
 
 const renderApp = () => {
     ReactDOM.render(
-        <Provider store={reduxStore}>
-            <IntlProviderWrapper>
-                <App persistor={persistor}/>
-            </IntlProviderWrapper>
-        </Provider>,
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+            <Provider store={reduxStore}>
+                <IntlProviderWrapper>
+                    <App persistor={persistor}/>
+                </IntlProviderWrapper>
+            </Provider>
+        </GoogleOAuthProvider>,
         document.getElementById('root')
     );
 };

@@ -45,7 +45,11 @@ body {
     color: var(--white);
     font-family: 'Barlow', sans-serif;
     overflow-x: hidden;
-    cursor: auto;
+    cursor: none !important;
+}
+
+* {
+    cursor: none !important;
 }
 
 /* ---------- Scrollbar ---------- */

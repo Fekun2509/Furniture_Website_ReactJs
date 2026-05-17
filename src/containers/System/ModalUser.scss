@@ -1,0 +1,261 @@
+.mu-modal {
+    .modal-content {
+        background: #0e0e0e;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 0;
+    }
+
+    .modal-body {
+        background: #0e0e0e;
+        padding: 1.5rem;
+    }
+
+    .modal-footer {
+        background: #0c0c0c;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 0.75rem 1.5rem;
+        gap: 0.5rem;
+    }
+}
+
+// ── Header ───────────────────────────────────────────────────────────────────
+
+.mu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: #0c0c0c;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mu-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.mu-header-icon {
+    font-size: 0.9rem;
+    color: #00e8d5;
+    opacity: 0.8;
+}
+
+.mu-header-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #d0d0d0;
+    line-height: 1.2;
+}
+
+.mu-header-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.7rem;
+    color: #444;
+    margin-top: 0.1rem;
+}
+
+.mu-close-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: #555;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+
+    &:hover {
+        color: #f05050;
+        border-color: rgba(240, 80, 80, 0.3);
+    }
+}
+
+// ── Form ─────────────────────────────────────────────────────────────────────
+
+.mu-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mu-section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 0.25rem;
+}
+
+.mu-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.mu-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    &.mu-full {
+        grid-column: 1 / -1;
+    }
+}
+
+.mu-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.22);
+
+    span { color: #00e8d5; margin-left: 2px; }
+}
+
+.mu-input {
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #c0c0c0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.82rem;
+    padding: 0.5rem 0.75rem;
+    outline: none;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s;
+
+    &::placeholder { color: #2e2e2e; }
+    &:hover { border-color: rgba(255, 255, 255, 0.15); }
+    &:focus { border-color: rgba(0, 232, 213, 0.35); }
+
+    option { background: #0c0c0c; }
+}
+
+// ── Role cards ───────────────────────────────────────────────────────────────
+
+.mu-role-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.mu-role-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.01);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    text-align: center;
+
+    &:hover {
+        border-color: rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    &.active {
+        border-color: rgba(0, 232, 213, 0.4);
+        background: rgba(0, 232, 213, 0.04);
+
+        .mu-role-icon { color: #00e8d5; }
+        .mu-role-name { color: #00e8d5; }
+    }
+
+    &.disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        border-color: rgba(255, 255, 255, 0.04);
+
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.01);
+        }
+    }
+}
+
+.mu-role-lock {
+    font-size: 0.55rem;
+    color: #333;
+    margin-top: 0.1rem;
+}
+
+.mu-role-icon {
+    font-size: 1rem;
+    color: #444;
+    transition: color 0.15s;
+}
+
+.mu-role-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666;
+    transition: color 0.15s;
+}
+
+.mu-role-sub {
+    font-size: 0.65rem;
+    color: #333;
+    line-height: 1.3;
+}
+
+// ── Footer buttons ────────────────────────────────────────────────────────────
+
+.mu-btn-cancel {
+    padding: 0.45rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+
+    &:hover {
+        color: #c0c0c0;
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+}
+
+.mu-btn-submit {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1.25rem;
+    border: 1px solid rgba(0, 232, 213, 0.35);
+    background: transparent;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #00e8d5;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+
+    i { font-size: 0.7rem; }
+
+    &:hover {
+        background: #00e8d5;
+        color: #050f0e;
+    }
+}
